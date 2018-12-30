@@ -76,62 +76,21 @@ app.get('/', async function (req, res){
                 });
             });
 
-            let concurrent = 0;
             let post_detail = [];
 
-            async.mapLimit(post_list, 5, function(item, callback){
-                concurrent++
-                console.log('concurrent: ', concurrent);
-                request
-                .get(item.href)
-                .then(pd=>{
-                    concurrent--;
-                    post_detail.push(pd);
-                });
-            }, function(err, results){
-                if(err) throw err;
-                console.log('is results: ', results)
-            });
+            // async.mapLimit(post_list, 5, function(item, callback){
+            //     return request
+            //     .get(item.href)
+            //     .then(pd=>pd);
 
-            res.send(post_detail);
-
-
-            // const post_detail = function* (){
-            //     for(let i=0; i<post_list.length; i++){
-            //       yield* post_list[i]
-            //     }
-            // };
-
-
-            // post_list.forEach(function (v){
-            //     promises.push(request(v.href));
+            // }, function(err, results){
+            //     if(err) throw err;
+            //     console.log('is results: ', results)
             // });
-            //
-            // let post_info_list = await Promise.all(promises);
-            // let final = [];
-            // post_info_list.map((v, i)=>{
-            //   const $$ = cheerio.load(v.text, {
-            //     normalizeWhitespace: true,
-            //     xmlMode: true
-            //   });
-            //
-            //   const isTop = $$('.topic_full_title').find('.put_top');
-            //   let title1
-            //   if(isTop){
-            //     title1 = $$('.topic_full_title').contents().eq(2).text();
-            //   }else{
-            //     title1 = $$('.topic_full_title').text();
-            //   }
-            //   const author = $$('#content div.changes span').eq(1).find('a').text();
-            //   const common1 = $$('.reply_content').eq(0).text().trim();
-            //
-            //   final.push({
-            //     ...post_list[i], author, common1
-            //   });
-            //
-            // });
-            //
-            // res.send(final);
+
+            // res.send(post_detail);
+
+            res.send('ceshi');
 
         }catch(error){
             throw error
