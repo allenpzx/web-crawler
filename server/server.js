@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 9090;
+const port = process.env.PORT || 9090;
 const path = require('path');
 // const request = require('superagent');
 // const cheerio = require('cheerio');
