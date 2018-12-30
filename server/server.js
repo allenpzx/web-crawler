@@ -7,6 +7,11 @@ const url = require('url');
 const async = require("async");
 const nodeUrl = 'http://cnodejs.org';
 
+app
+.use(express.static(path.join(__dirname, 'public')));
+
+
+
 app.get('/topics', (req, res) => {
     request
         .get('https://cnodejs.org/api/v1/topics')
