@@ -41,7 +41,7 @@ const path = require('path');
 
             // res.send(post_detail);
 
-            res.render('home/home.ejs');
+        res.render('home/home.ejs');
 
     })
 
