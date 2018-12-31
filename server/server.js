@@ -43,9 +43,6 @@ const path = require('path');
 
             res.render('home/home.ejs');
 
-        // } catch (error) {
-            // throw error
-        // }
     })
 
 app.listen(port, (error) => {
