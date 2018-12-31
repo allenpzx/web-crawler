@@ -10,6 +10,8 @@ const path = require('path');
 
     app
     .use(express.static(path.join(__dirname, 'public')))
+    .set('views', path.join(__dirname, '../views'))
+    .set('view engine', 'ejs')
     .get('/', function (req, res) {
         // try {
 
@@ -39,7 +41,7 @@ const path = require('path');
 
             // res.send(post_detail);
 
-            res.send('ceshi');
+            res.render('home/home.ejs');
 
         // } catch (error) {
             // throw error
