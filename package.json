@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server/server.js"
+    "dev": "nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
     "cheerio": "^1.0.0-rc.2",
-    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "pug": "^2.0.3",
     "superagent": "^4.0.0"
   },
   "proxy": "https://cnodejs.org/api/v1",

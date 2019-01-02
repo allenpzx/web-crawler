@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爬虫测试</title>
+    <link href='../utils/normalize.css' rel="stylesheet" type="text/css" />
+    <style>
+        #index_detail{
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justifu-content: flex-start;
+            align-items: center;
+            border: 1px solid red;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+        #index_detail li{
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+            word-wrap: break-word;
+            border-bottom: 1px solid grey;
+        }
+    </style>
+</head>
+<body>
+        <h1>cnode首页</h1>
+        <ul id='index_detail'>
+            <% index_detail.map(v=>{ %>
+            <li>
+                <span>title: <%= v.title %></span>
+                <span>href: <%= v.href %></span>
+                <span>author: <%= v.author %></span>
+                <span>common1: <%= v.common1 %></span>
+            </li>
+            <% }) %>
+        <ul>
+</body>
+</html>
