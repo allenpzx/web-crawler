@@ -1,11 +1,17 @@
 extends ../layout/layout.pug
 
 block style
-    <style>
-        h1{
-            color: red;
+    style(type='text/css').
+        #list-container{
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
-    </style>
 
 block content
-    h1 ok
+    h1 crawler test
+    ul#list-container
+        li 
+            a(href='/cnode?page1') cnode community No.1 page detail
+        li 
+            a(href='/cnode?page2') cnode community No.2 page detail

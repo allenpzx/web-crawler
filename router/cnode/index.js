@@ -1,17 +1,15 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
-
 const request = require('superagent');
 const cheerio = require('cheerio');
 const url = require('url');
 const async = require("async");
 const nodeUrl = 'http://cnodejs.org';
 
-router.get('/page1', async function cnodeHandler(req, res, next){
+ const getPosts = (req, res, next) => async (page=1) => {
     try {
 
-        const row_data = await request.get('https://cnodejs.org');
+        const row_data = await request.get(`https://cnodejs.org/?tab=all&page=${page}`);
         const $ = cheerio.load(row_data.text);
         let post_list = [];
         $('#topic_list .topic_title').each(function (idx, element) {
@@ -22,19 +20,19 @@ router.get('/page1', async function cnodeHandler(req, res, next){
             });
         });
 
-        async.mapLimit(
-            post_list,
-            10,
-            async (item, callback) => {
-                    const detail = await request(item.href);
-                    return detail
+        let final = [];
+        await new Promise((resolve, reject)=>{
+            async.mapLimit(
+                post_list,
+                10,
+                async (item, callback) => {
+                        const detail = await request(item.href);
+                        return detail
                 },
                 (err, results) => {
                     if (err) {
                         res.send(err);
                     }
-
-                    let final = [];
                     results.map((v, index) => {
                         const $$ = cheerio.load(v.text, {
                             normalizeWhitespace: true
@@ -47,16 +45,21 @@ router.get('/page1', async function cnodeHandler(req, res, next){
                             common1
                         }
                         final.push(obj);
-                    })
-
-                    res.send(final);
-
+                    });
+                    resolve()
                 }
-        );
-
+            );
+        })
+        return final
     } catch (error) {
         throw new Error(error)
     }
+}
+
+router.get('/', async function (req, res, next) {
+    const query = url.parse(req.url, true).query;
+    const postData = await getPosts(req,res,next)(query.page);
+    res.render('cnode/index.pug', {data: postData});
 })
 
 module.exports = router;
