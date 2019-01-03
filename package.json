@@ -15,6 +15,7 @@
     "chart.js": "^2.7.3",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
+    "mysql": "^2.16.0",
     "pug": "^2.0.3",
     "superagent": "^4.0.0"
   },
