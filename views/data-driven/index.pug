@@ -1,0 +1,60 @@
+extends ../layout/layout.pug
+
+block style
+    style(type: 'text/css').
+        .chart div {
+            font: 10px sans-serif;
+            background-color: steelblue;
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+        }
+
+block body-script
+    script(src='https://d3js.org/d3.v5.min.js')
+    script.
+        (async ()=>{
+            var p = d3.select("body")
+                .selectAll("p")
+                .data([4, 8, 15, 16, 23, 42])
+                .text(function(d) { return d; });
+            p.enter().append("p").text(function(d) { return d; });
+            p.exit().remove();
+
+            d3.csv("/population.csv")
+            .then((data, err)=>{
+                if (err) throw error;
+                console.log(data);
+            })
+            .catch(error=>{
+                console.log('error: ', error)
+            })
+
+            var data = [30, 86, 168, 281, 303, 365];
+            var x = d3.scaleLinear().domain([0, d3.max(data)]).range([0, window.innerWidth]);
+            d3.select(".chart")
+            .selectAll("div")
+            .data(data)
+            .enter()
+            .append("div")
+            .style('transition', 'all .5s')
+            .style("width", function(d) { return x(d) + "px"; })
+            .text(function(d) { return d; });
+
+        })()
+
+block content
+    h1 Data Driven
+    p 1
+    p 2
+    p 3
+    p 4
+    p 5
+    p 6
+    p 6
+    p 6
+    p 6
+    p 6
+    p 6
+    div.chart
