@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
+    "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
     "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "^1.4.3",
     "d3": "^5.7.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
