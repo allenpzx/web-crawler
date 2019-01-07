@@ -2,31 +2,16 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 9090;
 const path = require('path');
-const indexRouter = require(path.resolve(__dirname, '../router/index.js'));
-const cnodeRouter = require(path.resolve(__dirname, '../router/cnode/index.js'));
-const dataDrivenRouter = require(path.resolve(__dirname, '../router/data-driven/index.js'));
-
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'moremore'
-});
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
-  console.log('connected as id ' + connection.threadId);
-
-});
+const authRouter = require(path.resolve(__dirname, '../routes/auth/index.js'));
+const cnodeRouter = require(path.resolve(__dirname, '../routes/cnode/index.js'));
+const dataDrivenRouter = require(path.resolve(__dirname, '../routes/data-driven/index.js'));
 
 app
 .use(express.static(path.join(__dirname, '../public')))
 .set('views', path.join(__dirname, '../views'))
 .set('view engine', 'pug')
 .set('view engine', 'ejs')
-.use(indexRouter)
+.use(authRouter)
 .use('/cnode', cnodeRouter)
 .use('/data', dataDrivenRouter)
 .listen(PORT, (error) => {

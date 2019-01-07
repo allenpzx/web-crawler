@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form action="/register" method="POST">
+        <label for="account-register">
+            <input type="text" name="account-register" id="account-register">
+        </label>
+        <label for="password-register">
+            <input type="text" name="password-register" id="password-register">
+        </label>
+        <label for="password-register-repeat">
+            <input type="text" name="password-register-repeat" id="password-register-repeat">
+        </label>
+        <input type="submit" name="submit-register" id="submit-register" value='register'>
+    </form>
+    <input type="button" name="to-register" id="to-register" value='to-register' onclick="window.location.href='/register'">
+</body>
+</html>
